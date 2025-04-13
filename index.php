@@ -1,7 +1,7 @@
 <?php
 // SPDX-License-Identifier: GPL-3.0-only
 /**
- * Парсер групп Steam для извлечения идентификаторов групп
+ * Парсер группы Steam для извлечения идентификаторов групп
  */
 class SteamGroupParser
 {
@@ -26,7 +26,7 @@ class SteamGroupParser
     private const OFFSET_VALUE = 1429521408;
 
     /**
-     * Максимальная длина URL при парсинге
+     * Максимальная длина URL
      */
     private const MAX_POST_LENGTH = 70;
 
@@ -83,7 +83,7 @@ class SteamGroupParser
 
         // Проверяем валидность XML данных
         if (strlen($xmlContent) < self::MIN_XML_LENGTH) {
-            $this->errorMessage = 'Слишком коротый XML ответ';
+            $this->errorMessage = 'Слишком короткий XML ответ';
             return 0;
         }
 
@@ -129,7 +129,7 @@ class SteamGroupParser
      * Получает кэшированное значение для URL
      *
      * @param string $key Ключ кэша (MD5 хеш URL)
-     * @return int Закэшированное значение или 0 если не найдено
+     * @return int кэшированное значение или 0 если не найдено
      */
     private function getCachedResult(string $key): int
     {
@@ -214,6 +214,7 @@ $url = $parser->getUrlSteamGroup();
 
 $message = '';
 $message2 = '';
+
 if ($id > 0) {
     $message = $url;
     $message2 = $url . '<br>sv_steamgroup = "' . $id . '"';
